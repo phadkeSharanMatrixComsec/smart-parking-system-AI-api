@@ -2,10 +2,6 @@ from fastapi import FastAPI, UploadFile, File
 import cv2
 
 
-def extract_characters(img):
-    pass
-
-
 app = FastAPI()
 
 @app.get('/')
@@ -17,12 +13,11 @@ async def test():
 def upload(file: UploadFile = File(...)):
     try:
         contents = file.file.read()
-        with open(file.filename, 'wb') as f:
-            f.write(contents)
+        # with open(file.filename, 'wb') as f:
+        #     f.write(contents)
         
-
-        img = cv2.imread(file.filename)
-        chars = extract_characters(img)
+        with open('temp.png', 'wb') as f:
+            f.write(contents)
         
     except Exception:
         return {"message": "There was an error uploading the file"}
