@@ -92,7 +92,7 @@ def segment_characters(image) :
 
 def recognition():
     
-    img_ori = cv2.imread('/home/meetshah/Documents/smart-parking-system-AI-api/temp.png')
+    img_ori = cv2.imread('temp.png')
 
     height, width, channel = img_ori.shape
 
@@ -388,4 +388,6 @@ def recognition():
     img_1 = Image.fromarray(img_result)
     txt = pytesseract.image_to_string(img_1)
     print("Plate number is: ", txt)
+
+    return txt
     

@@ -1,6 +1,6 @@
 from fastapi import FastAPI, UploadFile, File
 import cv2
-
+from models.image_segmentation import recognition
 
 app = FastAPI()
 
@@ -18,9 +18,13 @@ def upload(file: UploadFile = File(...)):
         
         with open('temp.png', 'wb') as f:
             f.write(contents)
+
         
     except Exception:
         return {"message": "There was an error uploading the file"}
     finally:
         file.file.close()
-        return {"message": "File Uploaded Successfully"}
+        result = recognition()
+
+        print("result : ", result)
+        return {"message": f"Number Plate : '{result}'"}
