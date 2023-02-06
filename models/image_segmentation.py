@@ -3,6 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import pytesseract
 from PIL import Image
+from .cnn_character_recognition import get_characters
 plt.style.use('dark_background')
 
 def find_contours(dimensions, img) :
@@ -385,9 +386,13 @@ def recognition():
     plt.savefig('Car-Plates-Char(Seperated).png',bbox_inches = 'tight')
 
 
-    img_1 = Image.fromarray(img_result)
-    txt = pytesseract.image_to_string(img_1)
-    print("Plate number is: ", txt)
+    # OCR using pytessearct
+    # img_1 = Image.fromarray(img_result)
+    # txt = pytesseract.image_to_string(img_1)
+    # print("Plate number is: ", txt)
+
+    # OCR using CNN 
+    txt = get_characters(char)
 
     return txt
     
